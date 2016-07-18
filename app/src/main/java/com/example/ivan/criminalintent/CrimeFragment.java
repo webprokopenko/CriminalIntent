@@ -8,6 +8,9 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 /**
@@ -16,6 +19,8 @@ import android.widget.EditText;
 public class CrimeFragment extends Fragment {
     private Crime mCrime; //Объект модели данных преступления
     private EditText mTitleField; //Поле для ввода названия преступления
+    private Button  mDateButton; //Кнопка с датой
+    private CheckBox mSolvedCheckBox; //Признак закрытия преступления
 
     //Создаем фрагмент. При создании фрагмента - он не отображается
     @Override
@@ -47,6 +52,18 @@ public class CrimeFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 //Здесь намеренно оставлено пустое место
+            }
+        });
+        //Подключение виджета кнопки в фрагменте
+        mDateButton = (Button)v.findViewById(R.id.crime_date);
+        mDateButton.setText(mCrime.getDate().toString());
+        mDateButton.setEnabled(false);
+        //Назначение слушателя на CheckBox и изменение состояния о раскрытии
+        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mSolvedCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                mCrime.setSolved(isChecked);
             }
         });
 
