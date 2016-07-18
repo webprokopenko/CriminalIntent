@@ -14,6 +14,7 @@ public class CrimeLab {
     private static CrimeLab sCrimeLab;
     private List<Crime> mCrimes;
 
+    //Получаем объект CrimeLab если определен, если нет - Cоздаем его
     public static CrimeLab get(Context context){
         if (sCrimeLab == null){
             sCrimeLab = new CrimeLab(context);
@@ -34,7 +35,7 @@ public class CrimeLab {
     public List<Crime> getCrimes(){
         return mCrimes;
     }
-    //Возвращаем искомое преступление
+    //Возвращаем искомое преступление по ID
     public Crime getCrime(UUID id){
         for (Crime crime : mCrimes){
             if (crime.getId().equals(id)){
