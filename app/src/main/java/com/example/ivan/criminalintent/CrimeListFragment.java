@@ -61,7 +61,7 @@ public class CrimeListFragment extends Fragment {
         //Cобытие по клику на элементе из списка
         public void onClick(View v){
             //Создаем новую активность, передаем Id преступления
-            Intent intent = CrimeActivity.newIntent(getActivity(),mCrime.getId());
+            Intent intent = CrimePagerActivity.newIntent(getActivity(),mCrime.getId());
             startActivity(intent);
         }
         public void bindCrime(Crime crime){
